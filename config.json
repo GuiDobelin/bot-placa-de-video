@@ -1,0 +1,31 @@
+{
+  "buscas": [
+    "placa de video",
+    "rtx 5060",
+    "rtx 5070",
+    "rx 9060 xt",
+    "rx 9070",
+    "cupom placa de video"
+  ],
+  "modelos_de_interesse": [
+    "rtx 5060",
+    "rtx 5070",
+    "rx 9060",
+    "rx 9070",
+    "rtx 4060",
+    "rx 7600"
+  ],
+  "preco_maximo": 4500,
+  "intervalo_minutos": 15,
+  "ignorar_palavras": [
+    "notebook",
+    "computador",
+    "pc gamer",
+    "placa mae",
+    "placa-mae",
+    "monitor",
+    "cabo"
+  ],
+  "telegram_token": "",
+  "telegram_chat_id": ""
+}

@@ -1,0 +1,32 @@
+name: Bot de placa de vídeo
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # a cada 15 minutos (o GitHub pode atrasar alguns minutos)
+  workflow_dispatch:         # permite rodar na mão pela aba Actions
+
+permissions:
+  contents: write
+
+concurrency: bot
+
+jobs:
+  checar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Checar promoções
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python3 bot_gpu.py --once
+      - name: Salvar ofertas já avisadas
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add vistos.json
+          git diff --cached --quiet || (git commit -m "Atualiza ofertas vistas" && git push)
